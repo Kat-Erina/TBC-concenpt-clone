@@ -13,66 +13,60 @@ header{
     z-index: 1;
     background-color: white;
     width: 100%;
+    border: 2px solid red;
+    justify-content: center;
 }
 .header-container{
     display: flex;
     width: 100%;
        justify-content: space-between;
-       padding-left: 40px;
+       background-color: blue;
+       border: 2px solid rgb(25, 0, 255);
+       padding: 0 0 0 15px ;
 }
    .header-logo{
         display: flex;
+        padding: 0;
         }
 .logo{
-    width:60px;
-    height: 60px;
+    width:40px;
+    height: 40px;
     cursor: pointer;
-    
-}
+    }
 .header-meanu{
 display: flex;
-
-padding: 0;
-
-
-
+border:2px solid blue;
 }
 .menu-items-list{
     list-style: none;
-    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 13px;
 display: none;
 
 
     
 }
 .menu-item{
-    margin-right: 30px;
-
-    font-size: 16px;
-    
-            }
+    margin-left: 30px;
+font-size: 16px;
+        }
 .subscribe{
     font-size: 12px;
     display: flex;
-    
     align-items: center;
-  
-    text-decoration: none;
+  text-decoration: none;
     font-size: 12px;
     font-weight: bold;
-    
-     color: rgb(24, 44, 192);
+    color: rgb(24, 44, 192);
      transition: color 0.3s ease-in-out;
+     border: 2px solid red;
+     margin-right: 10px;
 }
 .subscribe:hover{
     cursor: pointer;
     color: rgb(56, 89, 238)
-    
-   
-}
+    }
 .subscribe:hover .fa-arrow-right {
     color: rgb(56, 89, 238)
 
@@ -94,30 +88,26 @@ font-weight: 600;
 }
 .header-concept span{
     font-size: 27px;
-    height: 27px;
     font-weight: 100;
     margin: 0;
 }
 
 .hamburger-menu{
     cursor: pointer;
-    width:50px
-    
-  
-    
+    width:35px;
+    padding: 0;
 }
 .menu{
     display: flex;
     height: 100%;
-    width:100%;
  align-items: center;
-    }
+ justify-content: end;
+ }
 
 .fa-magnifying-glass{
     margin-right: 20px;
     margin-left: 20px;
     font-size: 20px;
-    
     color: rgb(85, 96, 96);
     cursor: pointer;
 }
@@ -126,24 +116,18 @@ font-weight: 600;
 }
 
 .hamburger-menu-bar{
-   
-   
-    height: 2px;
+   height: 2px;
     background-color:  rgb(108, 102, 102);
     margin:6px ;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-   
-   
-width:50px;
+   width:50px;
     display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
     gap: 6px; 
-  
-
-}
+  }
 
 .bar1{
     width: 9px;
@@ -174,16 +158,20 @@ width:20px
     .language-container{
         display: none;
    align-items: center; 
+   border: 2px solid red;
+   padding: 0;
 }
 
     .language-container div{
         width: 100px;
         height: 40px;
-        border-radius: 10px;  }
+        border-radius: 10px; 
+        padding: 0; }
     
    
     .fa-globe{
         margin-right: 5px;
+        border:2px solid red
     }
 
     .menu-item:hover{
@@ -194,10 +182,10 @@ width:20px
         margin-top: 80px;
         z-index: 0;
         position: relative;
+        background-color: rgb(0, 85, 255);
     }
     .accordion{
         padding-top: 20px;
-    padding-left: 30px;
     
     }
 
@@ -227,9 +215,6 @@ width:20px
       .accordion-item{
 padding-bottom: 40px;   
    }
-
-
-
 .accordion-button:focus, .accordion-button:active {
     box-shadow: none !important; 
     border: none !important;
@@ -310,6 +295,7 @@ padding-bottom: 40px;
     opacity: 0;
     flex-direction: column;
     width: 130px;
+    padding-top: 20px;
     
     
 }
@@ -361,11 +347,11 @@ padding-bottom: 40px;
 
 
 .additional-menu-space{
-    height: 200px;
-    width: 100%;
+    height: 230px;
+    width: 95%;
     z-index: 0;
-    padding-left: 50px;
-    padding-top: 20px;
+    background-color: blueviolet;
+    padding-top: 40px;
     display: none;
     opacity: 0;
     flex-direction: column;
@@ -373,14 +359,14 @@ padding-bottom: 40px;
 
 .additional-menu-space img{
     
-    padding-left: 50px;
     transition: all 0.5s ease-in;
-    width:300px;
-    height: 300px;
+    width:200px;
+    height: 200px;
+    border:2px solid black;
+    
     
    }
    .digital-banking{
-    padding-left:50px ;
     cursor: pointer;
     color: rgb(24, 44, 192);
     margin-top: 2px;
@@ -388,7 +374,8 @@ padding-bottom: 40px;
     text-decoration: none; 
       transition: color 0.3s ease; 
       
-      width:400px
+      width:400px;
+      padding-left: 1%;
    }
 
    .digital-banking i:hover{color: rgb(56, 89, 238)}
@@ -404,7 +391,7 @@ padding-bottom: 40px;
 }
 
 .contact{
-    padding: 0 45px;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
 }
@@ -458,7 +445,7 @@ padding-bottom: 40px;
    
     text-align: center;
     align-items: center;
-    padding-left: 30px;
+    padding-left: 20px;
 }
 .small-footer img{
     width:50px;
@@ -472,12 +459,12 @@ margin-top: 20px;}
 }
 
 
+
 @media (min-width: 768px) {
-    header{
-        justify-content: center;
-    }
+  
    .header-container{
-    padding: 5px 45px 5px 45px;
+    padding-right: 20px;
+    padding-left: 30px;
     
    }
     .header-concept{
@@ -500,42 +487,60 @@ margin-top: 20px;}
         width:20px
     }
     .accordion{
-        padding-right: 50px; 
+        padding-right: 12px; 
+        padding-left: 10px;
     }
 }    
 
 
 @media (min-width: 992px) {
    header{
-    overflow-x: hidden;
-    width: 100%;
+    padding-top:10px ;
+    
    }
-    .header-container{
-        display: flex;
-       
-    }
    
-    .header-concept{
-        width: 100px;
-    } 
+   .header-container{
+    justify-content: space-between;
+width: 95%;
+background-color: aqua;
+padding-left: 0;
+padding-right: 0;
+    
+   }
+   .header-meanu{
+    background-color: yellow;
+ 
+   }
+   .header-logo{
+   
+    border: 2px solid green;
+    align-items: center;
+    background-color: brown;
+    width: 10rem;
+   }
     .logo{
-        width:45px;
-        height: 45px;
+        width:35px;
+      
+        border: 2px solid red;
     }
+    .concept{
+background-color: aquamarine;    }
     .menu-items-list{
         display: flex;
         height: 100%;
-  
+        border: 2px solid red;
+background-color: green;
 
+    }
+   
+    .menu-item a{font-size: 16px;
     }
     
     .hamburger-menu{display: none;}
-    .menu{
-        width:35%
-    }
+   
      .header-concept{
-        
          cursor: pointer;
+         margin-top: 10px;
          
       
      }
@@ -545,42 +550,33 @@ margin-top: 20px;}
         z-index: 1;
     }
     .subscribe{font-size: 12px;
-    width: 400px;}
-    .main-menu{
-        width:75%; 
-
-    }
+        width:200px;
+    
+}
+   
     .open-menu-bar{display: none;}
   
  } 
+
 
 
  @media (min-width: 1200px) {
     header{
         width: 100%;
         overflow-x: visible;
+        padding: 15px 0;
     }
     
 
     .menu-items-list{
-        
+        margin-right: 100px;
        padding: 0;
-       min-width: 450px;
     }
    
 .header-container{
-
+    width: 1200px;
 display: flex;
-justify-content: center;
-margin-left: 350px;
-
 }
-.header-meanu{padding-left: 100px;}
-
-
- }
- @media(min-width:1400px){
-    .additional-menu-space{
-    padding-left: 15%; 
+.additional-menu-space{width: 1200px;}
 }
- }
+ 

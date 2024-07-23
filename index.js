@@ -4,7 +4,8 @@ const languageContainer=document.querySelector('.languages');
 const englishLanguageOption=document.querySelector('.english');
 const geoLanguage=document.querySelector('.georgian');
 const additionalMenu=document.querySelector('.additional-menu-space');
-const dropBtn=document.querySelectorAll('.dropbtn')
+const dropBtn=document.querySelectorAll('.dropbtn');
+const dropDownContentList=document.querySelectorAll('.dropdown-content')
 
 
 let selectedLanguage=window.localStorage.getItem('language')|| "ka";
@@ -38,8 +39,7 @@ englishLanguageOption.addEventListener('mouseleave',()=> {
 
 
 englishLanguageOption.addEventListener('click', ()=>{
- 
-  if(englishLanguageOption.textContent==="ENG"){
+ if(englishLanguageOption.textContent==="ENG"){
     englishLanguageOption.textContent="ქარ";
     geoLanguage.textContent='ENG';
     loadTranslations('eng');
@@ -49,14 +49,10 @@ localStorage.setItem('language', 'eng')
     geoLanguage.textContent='ქარ';
     loadTranslations('ka');
     localStorage.setItem('language', 'ka')
-
-  }
-  
-})
+}})
 
 
 function loadTranslations(lang) {
-  
   fetch(`${lang}.json`)
       .then(response => {return response.json()})
       .then(data => {
@@ -64,8 +60,6 @@ function loadTranslations(lang) {
     updateContent()
       });
      }
-
-
 
 function updateContent() {
 const allItems=document.querySelectorAll('[data-lang]');
@@ -85,15 +79,15 @@ dropBtn.forEach((el)=>{
   
 el.addEventListener('click', (e)=>{
   if(e.target.nextElementSibling.classList.contains('visible')){
-    additionalMenu.classList.remove('visible');
+    removeVisibility(additionalMenu)
     
   } else {additionalMenu.classList.add('visible');
     additionalMenu.classList.remove('invisible')
     
   }
-   document.querySelectorAll('.dropdown-content').forEach((el)=>{
+  dropDownContentList.forEach((el)=>{
       if(el!=e.target.nextElementSibling){
-        el.classList.remove('visible')
+        removeVisibility(el)
         
         }
     })
@@ -104,15 +98,26 @@ el.addEventListener('click', (e)=>{
 function checkViewportWidth() {
   if(window.innerWidth<=992){
      additionalMenu.classList.add('invisible')
-     additionalMenu.classList.remove('visible')
-     document.querySelectorAll('.dropdown-content').forEach((el)=>{
-    
-      el.classList.remove('visible')
-      
-  })
+    removeVisibility(additionalMenu)
+   
   }
 
 }
 
 window.addEventListener('resize',()=> checkViewportWidth());
+
+
+
+function removeVisibility(param){
+    param.classList.remove('visible')
+      
+}
+document.addEventListener('click', (e)=>{
+  if(!e.target.classList.contains('dropbtn') && additionalMenu.classList.contains('visible')  ){
+    
+    removeVisibility(additionalMenu)
+    dropDownContentList.forEach((el)=>removeVisibility(el))
+
+  }
+})
 
