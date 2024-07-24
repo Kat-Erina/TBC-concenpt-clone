@@ -5,7 +5,8 @@ const englishLanguageOption=document.querySelector('.english');
 const geoLanguage=document.querySelector('.georgian');
 const additionalMenu=document.querySelector('.additional-menu-space');
 const dropBtn=document.querySelectorAll('.dropbtn');
-const dropDownContentList=document.querySelectorAll('.dropdown-content')
+const dropDownContentList=document.querySelectorAll('.dropdown-content');
+const menuContainer=document.querySelector('.menu-container')
 
 
 let selectedLanguage=window.localStorage.getItem('language')|| "ka";
@@ -18,7 +19,8 @@ if(selectedLanguage==='eng'){
 
 hamburgerMenu.addEventListener('click', ()=>{
   hamburgerMenu.classList.toggle('active')  
-  openMenuBar.classList.toggle('open')
+  openMenuBar.classList.toggle('open');
+  menuContainer.classList.toggle('hidden')
 })
 
 geoLanguage.addEventListener('mouseenter',()=> {
@@ -120,4 +122,13 @@ document.addEventListener('click', (e)=>{
 
   }
 })
+
+const listItems = document.querySelectorAll('.menu-item');
+
+listItems.forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+});
+
 

@@ -50,7 +50,10 @@ display: none;
 .menu-item{
     margin-left: 30px;
 font-size: 16px;
+border:2px solid red
         }
+
+      
 .subscribe{
     font-size: 12px;
     display: flex;
@@ -80,13 +83,15 @@ font-size: 16px;
 }
 
 .header-concept{
-    display: none;
+    background-color: red;
+    display: none ;
     height: 100%;
      color:   rgb(85, 95, 98);
      font-size: 20px;
 font-weight: 600;
 }
 .header-concept span{
+    display: none ;
     font-size: 27px;
     font-weight: 100;
     margin: 0;
@@ -96,6 +101,7 @@ font-weight: 600;
     cursor: pointer;
     width:35px;
     padding: 0;
+    background-color: aquamarine
 }
 .menu{
     display: flex;
@@ -115,7 +121,7 @@ font-weight: 600;
     color: rgb(56, 83, 202)
 }
 
-.hamburger-menu-bar{
+.hamburger-menu-bar{background-color: aquamarine;
    height: 2px;
     background-color:  rgb(108, 102, 102);
     margin:6px ;
@@ -179,10 +185,13 @@ width:20px
     }
 
     main{
+        padding-top: 30px;
         margin-top: 80px;
         z-index: 0;
         position: relative;
-        background-color: rgb(0, 85, 255);
+        background-color: rgb(236, 240, 241);
+        display: flex;
+        justify-content: center;
     }
     .accordion{
         padding-top: 20px;
@@ -238,6 +247,7 @@ padding-bottom: 40px;
         display: none;
         transition: all 0.2s ease-in-out;
         width: 100%;
+        background-color: white;
     }
     .open{
         opacity: 1;
@@ -245,10 +255,7 @@ padding-bottom: 40px;
 
     }
 
-    main{
-        display: flex;
-        justify-content: center;
-    }
+  
   
     .main-menu{
         z-index: 0;
@@ -288,15 +295,17 @@ padding-bottom: 40px;
 
 
 .dropdown-content {
+    display: flex;
     position: absolute;
-    margin-top: 20px;
+    padding-top: 20px;
     z-index: 1;
-    display: none;
+    border: 2px solid red;
+    visibility: hidden;
     opacity: 0;
     flex-direction: column;
     width: 130px;
-    padding-top: 20px;
-    
+    margin-top: 20px;
+    transition: all 0.5s ease-in-out;
     
 }
 
@@ -345,24 +354,33 @@ padding-bottom: 40px;
 }
 
 
+.menu-container{
+    position: relative;
+    z-index: 0;
 
+}
+.hidden{
+    display: none;
+}
 .additional-menu-space{
     height: 230px;
     width: 95%;
-    z-index: 0;
+    z-index: 1;
     background-color: blueviolet;
-    padding-top: 40px;
-    display: none;
+    
     opacity: 0;
+    visibility: hidden;
     flex-direction: column;
+    transition: all 0.5s ease-in-out;
+    position: absolute;
 }
 
 .additional-menu-space img{
     
     transition: all 0.5s ease-in;
     width:200px;
-    height: 200px;
     border:2px solid black;
+    margin-bottom: 20px;
     
     
    }
@@ -373,9 +391,10 @@ padding-bottom: 40px;
     font-weight: bold;
     text-decoration: none; 
       transition: color 0.3s ease; 
-      
+      height: 150px;
       width:400px;
       padding-left: 1%;
+      border: 2px solid red;
    }
 
    .digital-banking i:hover{color: rgb(56, 89, 238)}
@@ -383,10 +402,12 @@ padding-bottom: 40px;
 .visible{
     display: flex;
     opacity: 1;
+    transition: opacity 0.5s ease-in-out;
     
 }
 .invisible{
-    display:none;
+    visibility: hidden;
+
     opacity: 0
 }
 
@@ -432,6 +453,10 @@ padding-bottom: 40px;
     display: flex;
     flex-direction: row;
     padding-left: 40px;
+    border: 2px solid red;
+    height: 100%;
+    text-align: center;
+    align-items: center;
 }
 .terms ul li{
     font-size: 12px;
@@ -441,12 +466,14 @@ padding-bottom: 40px;
 
 .small-footer{
     display:  flex;
-    flex-direction: row;
-   
+    flex-direction: column;
+   justify-content: space-between;
     text-align: center;
-    align-items: center;
-    padding-left: 20px;
 }
+.footer-logo{border: 2px solid red;
+    width: 100%;
+display: flex;}
+
 .small-footer img{
     width:50px;
     height: 50px;
@@ -458,20 +485,158 @@ margin-top: 20px;}
     padding-right: 15px;
 }
 
+.go-back{
+    padding-left: 15px;
+    font-size: 12px;
+    margin-bottom: 40px;
+}
+.fa-arrow-left{font-size: 10px;
+margin-right: 5px;}
 
+.tbc-concept-container{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images//main.webp');
+    height: 350px;
+    background-size: cover;
+    background-position: center top;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 0 20px;
+}
+.text{margin-top: 150px;}
+.text p{
+   font-weight: bold; 
+   
+}
+#concept-description{
+    font-weight: 100;
+    font-size: 15px;
+    width: 100%;
+    border:2px solid red;
+    height: 80px;
+}
+#subscribe-link{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 13px 0;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    background: linear-gradient(to right, #00008B, #1c59c2); 
+
+}
+#sbs-txt{color: white}
+.subscribe-text{
+    padding-left: 20px;
+    color: rgb(20, 23, 25);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    letter-spacing: 0.1;
+    
+}
+
+.packages-container{
+    background-color: aquamarine;
+}
+.packages-container p{
+    padding-left: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.packages {
+    display: flex;
+    overflow-x: auto;
+    max-width: 100vw; 
+    box-sizing: border-box;
+  }
+  .packages article:first-child{
+    margin-left: 20px;
+  }
+
+  .packages article {
+    position: relative;
+    flex: 0 0 auto; 
+    min-width: 300px;
+    border: 1px solid #ccc;
+    margin-right: 15px;
+    height: 250px;
+   
+  }
+
+  .card{ background-position: center;
+    background-size: cover;
+    transition: transform 0.3s ease-in-out; }
+  .card-1{
+ 
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images/digital.png');
+   
+  }
+  .card-2{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images/more.png');
+  }
+  .card-3{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images/premium.png');
+  }
+ 
+  .card-1:hover, .card-2:hover, .card-3:hover{
+    
+    transform: scale(1.01); 
+  }
+
+  .card-content{
+    display: flex;
+    flex-direction: column;
+    
+    position: absolute;
+    left: 20px; 
+    bottom: 15px; 
+    margin: 0;
+    color: white;
+    
+  }
+ 
+  .card-content   .fa-arrow-right{
+    color: white;
+   
+  }
+  .card-content a {padding: 0;
+
+color: white;
+font-size: 12px;
+}
 
 @media (min-width: 768px) {
-  
-   .header-container{
-    padding-right: 20px;
-    padding-left: 30px;
-    
-   }
+.header-container{
+    width: 720px;
+    background-color: aqua;
+    padding: 0;
+    }
+
+
     .header-concept{
         display: flex;
         cursor: pointer;
-        align-items: center;
+       
+        margin-top: 17px;
+       align-items: center;
+       height: fit-content;
+       padding-left: 15px;
      
+    }
+    .header-logo{
+        background-color: green;
+        align-items: center;
+       
+    }
+    .logo{
+        width: 30px;
+        height: 30px;
+
     }
     .subscribe{
         font-size: 1rem;
@@ -486,35 +651,109 @@ margin-top: 20px;}
     .bar3{
         width:20px
     }
-    .accordion{
-        padding-right: 12px; 
-        padding-left: 10px;
-    }
-}    
+    .open-menu-bar{width: 720px;
+}
+   
+    .go-back{
+    padding: 0;
+    width: 720px;
+    border: 2px solid red;
+    
+}
+.fa-arrow-left{
+display: none !important;}
 
+
+.menu-container{
+    width: 720px ;
+    
+    background-color: yellow;
+    background-color: blue;
+}
+
+.tbc-concept-container{
+  border-radius: 5px;
+
+}
+
+#concept-description{
+    font-weight: 400;
+   
+    width:400px;
+    height: 50px;
+}
+.concept-title{
+    font-size: 1.5rem
+}
+#subscribe-link{
+    width: 150px;
+}
+.subscribe-text{padding-left: 0;}
+.packages-container p{
+    padding-left: 0;
+
+
+}
+
+
+.packages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    overflow: hidden;
+     grid-template-rows: repeat(2, 250px);
+    gap: 30px;
+  }
+
+  .packages article {
+    min-width: unset;
+    margin-right: 0;
+    height: auto;
+    border-radius: 15px;
+  }
+  .card-1{
+    grid-column: 1;
+        grid-row: 1;
+        margin-left: 0 !important;
+        
+  }
+  .card-3{
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .card-2{
+    
+        grid-column: 2 ;
+        grid-row: 1 / span 2;
+        height:500px
+      
+  }
+  
+  
+}
 
 @media (min-width: 992px) {
    header{
-    padding-top:10px ;
-    
+    padding-top:0 ;
    }
    
    .header-container{
-    justify-content: space-between;
+    justify-content: center;
 width: 95%;
 background-color: aqua;
-padding-left: 0;
-padding-right: 0;
+
     
    }
    .header-meanu{
     background-color: yellow;
  
    }
+   .header-concept{background-color: green; 
+margin-top: 15px;}
    .header-logo{
    
     border: 2px solid green;
-    align-items: center;
     background-color: brown;
     width: 10rem;
    }
@@ -523,13 +762,14 @@ padding-right: 0;
       
         border: 2px solid red;
     }
-    .concept{
-background-color: aquamarine;    }
+    
     .menu-items-list{
         display: flex;
         height: 100%;
         border: 2px solid red;
-background-color: green;
+background-color: rgb(81, 146, 81);
+width: 500px;
+padding-left: 5px;
 
     }
    
@@ -538,23 +778,27 @@ background-color: green;
     
     .hamburger-menu{display: none;}
    
-     .header-concept{
-         cursor: pointer;
-         margin-top: 10px;
-         
-      
-     }
+  
        .language-container{
         display: flex;
         position: relative;
         z-index: 1;
     }
     .subscribe{font-size: 12px;
-        width:200px;
+        width:170px;
     
 }
+.menu-container{width: 909px;}
    
     .open-menu-bar{display: none;}
+    .tbc-concept-container{
+        height: 400px;
+    }
+   
+     .card-content{
+        left: 60px;
+        bottom: 30px;
+     }
   
  } 
 
@@ -563,20 +807,42 @@ background-color: green;
  @media (min-width: 1200px) {
     header{
         width: 100%;
+        border: 2px solid blue;
         overflow-x: visible;
-        padding: 15px 0;
     }
     
 
     .menu-items-list{
-        margin-right: 100px;
+        
        padding: 0;
     }
    
 .header-container{
-    width: 1200px;
-display: flex;
+    display: flex;
+    justify-content: space-between;
+   
+background-color: rgb(128, 0, 79);
 }
-.additional-menu-space{width: 1200px;}
+.logo{
+    height: 30px;
+}
+.menu-container{
+    background-color: rgb(255, 234, 0);
+    padding: 0pz;
+}
+.tbc-concept-container{width: 1100px;
+    justify-content: center;
+    padding-left: 100px;
+    padding-bottom: 100px;
+    
+}
+.subscribe-text{
+    background-color: aqua;
+    font-size: 2.2rem;
+    line-height: 1.5;
+    padding:100px 0 100px 0;
+}
+.packages-container, .subscribe-text, .menu-container, .additional-menu-space, .header-container{width: 1100px;}
+
 }
  
