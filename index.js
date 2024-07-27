@@ -7,6 +7,8 @@ const additionalMenu=document.querySelector('.additional-menu-space');
 const dropBtn=document.querySelectorAll('.dropbtn');
 const dropDownContentList=document.querySelectorAll('.dropdown-content');
 const menuContainer=document.querySelector('.menu-container');
+
+
 const offers=document.querySelector('.offers');
 const parentContainerOffer=document.querySelectorAll('.offer-card-parent')
 const offerContainer=document.querySelector('.offer-container');
@@ -17,12 +19,26 @@ const sliderThumb=document.querySelector('.sliderthumb');
 const parentSlider=document.querySelector('.slider');
 const sliderBtns=document.querySelector('.slider-btns');
 let sliderthumLocation=(parentSlider.clientWidth-sliderThumb.clientWidth+10-sliderBtns.clientWidth)/(slidesAmount+1);
-let selectedLanguage=window.localStorage.getItem('language')|| "ka";
 const leftButton=document.querySelector('.left');
+const rightButton=document.querySelector('.right');
+
+
+const products=document.querySelector('.products');
+const parentContainerProduct=document.querySelectorAll('.product-card-parent');
+const productContainer=document.querySelector('.product-container')
+let productSliderWidth=products.clientWidth;
+const productItemWidth=parentContainerProduct[2].getBoundingClientRect().width;
+let slidesAmountForProducts=Math.abs(Math.ceil((productSliderWidth-window.innerWidth)/productItemWidth)+2);
+const productsSliderThumb=document.querySelector('.products-sliderthumb');
+const productsParentSlider=document.querySelector('.product-slider');
+const productsSliderBtns=document.querySelector('.product-slider-btns');
+let productsSliderthumLocation=(productsParentSlider.clientWidth-productsSliderThumb.clientWidth+10-productsSliderBtns.clientWidth)/(slidesAmountForProducts+1);
+let productSliderLeftBtn=document.querySelector('.left-product-btn');
+let productSliderRightBtn=document.querySelector('.right-product-btn')
 
 
 
-
+let selectedLanguage=window.localStorage.getItem('language')|| "ka";
 if(selectedLanguage==='eng'){
   englishLanguageOption.textContent="ქარ";
   geoLanguage.textContent="ENG"
@@ -152,12 +168,12 @@ listItems.forEach(item => {
 
   
 let isAnimating = false; 
-
-  const rightButton=document.querySelector('.right');
-let currentSlideIndex=0
-   let main=document.querySelector('.menu-container')
-
-  let rightCoordinate=offers.getBoundingClientRect().right;
+let mouseIsmoving=false;
+let currentSlideIndex=0;
+let currentProductSlideIndex=0;
+let main=document.querySelector('.menu-container')
+let rightCoordinate=offers.getBoundingClientRect().right;
+let rightProductCoordinate=products.getBoundingClientRect().right;
 
   function debounce(func, delay) {
     let timeout;
@@ -177,86 +193,183 @@ let currentSlideIndex=0
       } 
   
       isAnimating = false;
-      mouseIsmoving=false
+      mouseIsmoving=false;
 }
-   const debouncedHandleSlideRight = debounce(handleRightClick, 300);
-rightButton.addEventListener('click', debouncedHandleSlideRight);
-
-
-
-
-
 
 handleLeftClick=()=>{
   
- if(currentSlideIndex===0)  return
-         else  {
-                offers.style.transform=`translateX(${offers.getBoundingClientRect().left+itemWidth+35-offerContainer.getBoundingClientRect().left}px`;
-              currentSlideIndex--;
-              sliderThumb.style.transform=`translateX(${currentSlideIndex*sliderthumLocation}px)`
-               } 
-mouseIsmoving=false
-       }
+  if(currentSlideIndex===0)  return
+          else  {
+                 offers.style.transform=`translateX(${offers.getBoundingClientRect().left+itemWidth+35-offerContainer.getBoundingClientRect().left}px`;
+               currentSlideIndex--;
+               sliderThumb.style.transform=`translateX(${currentSlideIndex*sliderthumLocation}px)`
+                } 
+ mouseIsmoving=false
+        }
+   const debouncedHandleSlideRight = debounce(handleRightClick, 300);
+rightButton.addEventListener('click', debouncedHandleSlideRight);
 
+offers.addEventListener('mousedown', (event)=>{
+  mouseIsmoving=true;
+  xCoordinate=event.clientX;
+  sliderBtns.classList.add('visible')
+ })
+
+ offers.addEventListener('mouseover', (e)=>{
+  sliderBtns.style.display="flex"
+  let coordinate=e.clientX;
+  if(mouseIsmoving){
+    coordinate=e.clientX
+    if(xCoordinate<coordinate){
+    
+    xCoordinate=e.clientX
+    handleLeftClick();
+
+  } else {
+
+xCoordinate=e.clientX;
+handleRightClick();
+
+}
+}
+  
+ });
+
+
+ offers.addEventListener('mouseup', ()=>{
+  mouseIsmoving=false;
+ 
+ })
+
+
+
+ offers.addEventListener('touchstart', ()=>{
+  mouseIsmoving=true;
+  xCoordinate=event.touches[0].clientX;
+  
+ })
+
+ offers.addEventListener('touchmove', (e)=>{
+  let coordinate=e.touches[0].clientX;
+ if(mouseIsmoving){
+    if(xCoordinate<coordinate){
+    handleLeftClick();
+    mouseIsmoving=false;
+  } else {
+handleRightClick();
+mouseIsmoving=false;
+}
+}})
+
+
+let isAnimatingProducts=false;
+handleRightClickforProduct=()=>{
+ 
+  if (products.getBoundingClientRect().right > main.getBoundingClientRect().right) {
+         currentProductSlideIndex++;
+         products.style.transform = `translateX(${(-currentProductSlideIndex) * (productItemWidth + 35)}px)`;
+         productsSliderThumb.style.transform=`translateX(${currentProductSlideIndex*productsSliderthumLocation}px)`
+       } 
+   
+       isAnimatingProducts = false;
+      mouseIsmovingForProduct=false
+ }
+    const debouncedHandleSlideRight2 = debounce(handleRightClickforProduct, 300);
+    productSliderRightBtn.addEventListener('click', debouncedHandleSlideRight2);
+
+
+
+
+
+
+       handleLeftClickProduct=()=>{
+  
+        if(currentProductSlideIndex===0)  return
+                else  {
+                       products.style.transform=`translateX(${products.getBoundingClientRect().left+productItemWidth+35-productContainer.getBoundingClientRect().left}px`;
+                     currentProductSlideIndex--;
+                     productsSliderThumb.style.transform=`translateX(${currentProductSlideIndex*productsSliderthumLocation}px)`
+                      } 
+       mouseIsmovingForProduct=false
+              }
 
        let xCoordinate=0;
-       let mouseIsmoving=false
+       let xCoordinateforProduct=0;
+       let mouseIsmovingForProduct=false;
 
        const debouncedHandleSlideLeft = debounce(handleLeftClick, 300);
        leftButton.addEventListener('click', debouncedHandleSlideLeft)
 
+     
+
+const debouncedHandleSlideLeft2=debounce(handleLeftClickProduct, 300);
+productSliderLeftBtn.addEventListener('click', debouncedHandleSlideLeft2)
+    
 
     
 
-       offers.addEventListener('mousedown', (event)=>{
-        mouseIsmoving=true;
-        xCoordinate=event.clientX;
-        sliderBtns.classList.add('visible')
+
+
+       products.addEventListener('mousedown', (event)=>{
+        mouseIsmovingForProduct=true;
+        xCoordinateforProduct=event.clientX;
+        productsSliderBtns.classList.add('visible')
        })
 
 
-       offers.addEventListener('mouseover', (e)=>{
-        sliderBtns.style.display="flex"
-        let coordinate=e.clientX;
-        if(mouseIsmoving){
-          coordinate=e.clientX
-          if(xCoordinate<coordinate){
-          
-          xCoordinate=e.clientX
-          handleLeftClick("hi");
-
-        } else {
-     
-      xCoordinate=e.clientX;
-      handleRightClick("hi");
       
-    }
-    }
-        
-       });
 
-       offers.addEventListener('mouseup', (event)=>{
-        mouseIsmoving=false;
+
+
+    products.addEventListener('mouseover', (e)=>{
+      productsSliderBtns.style.display="flex"
+      let coordinate=e.clientX;
+      if(mouseIsmovingForProduct){
+        coordinate=e.clientX
+        if(xCoordinateforProduct<coordinate){
+        
+          xCoordinateforProduct=e.clientX
+          handleLeftClickProduct();
+
+      } else {
+   
+        xCoordinateforProduct=e.clientX;
+        handleRightClickforProduct();
+    
+  }
+  }
+      
+     });
+
+
+     
+
+       products.addEventListener('mouseup', (event)=>{
+        mouseIsmovingForProduct=false;
        
        })
 
-       offers.addEventListener('touchstart', (event)=>{
-        mouseIsmoving=true;
-        xCoordinate=event.touches[0].clientX;
+      
+
+       products.addEventListener('touchstart', (event)=>{
+        mouseIsmovingForProduct=true;
+        xCoordinateforProduct=event.touches[0].clientX;
         
        })
 
-
-       offers.addEventListener('touchmove', (e)=>{
+       products.addEventListener('touchmove', (e)=>{
         let coordinate=e.touches[0].clientX;
-       if(mouseIsmoving){
-          if(xCoordinate<coordinate){
-          handleLeftClick();
-          mouseIsmoving=false;
+       if(mouseIsmovingForProduct){
+          if(xCoordinateforProduct<coordinate){
+          handleLeftClickProduct();
+          mouseIsmovingForProduct=false;
         } else {
-     handleRightClick();
-      mouseIsmoving=false;
+          handleRightClickforProduct();
+      mouseIsmovingForProduct=false;
     }
     }})
+
+
+      
 
 
