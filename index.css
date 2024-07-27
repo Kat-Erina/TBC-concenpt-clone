@@ -186,12 +186,13 @@ width:20px
 
     main{
         padding-top: 30px;
-        margin-top: 80px;
+        /* margin-top: 80px; */
         z-index: 0;
         position: relative;
         background-color: rgb(236, 240, 241);
         display: flex;
         justify-content: center;
+        margin-bottom: 50px;
     }
     .accordion{
         padding-top: 20px;
@@ -243,6 +244,7 @@ padding-bottom: 40px;
 }
 
     .open-menu-bar{
+        padding-top: 30px;
         opacity: 0;
         display: none;
         transition: all 0.2s ease-in-out;
@@ -363,16 +365,17 @@ padding-bottom: 40px;
     display: none;
 }
 .additional-menu-space{
-    height: 230px;
+    height: 310px;
     width: 95%;
     z-index: 1;
-    background-color: blueviolet;
-    
+    background-color: white;
+    padding-top: 80px;
     opacity: 0;
     visibility: hidden;
     flex-direction: column;
     transition: all 0.5s ease-in-out;
     position: absolute;
+    position: fixed;
 }
 
 .additional-menu-space img{
@@ -540,8 +543,12 @@ margin-right: 5px;}
     
 }
 
-.packages-container{
+/* //testing */
+
+.packages-container, .statistics {
     background-color: aquamarine;
+    z-index: 0;
+    scroll-behavior: smooth;
 }
 .packages-container p{
     padding-left: 20px;
@@ -553,6 +560,7 @@ margin-right: 5px;}
     overflow-x: auto;
     max-width: 100vw; 
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
   .packages article:first-child{
     margin-left: 20px;
@@ -568,7 +576,11 @@ margin-right: 5px;}
    
   }
 
-  .card{ background-position: center;
+  /* //vtestav */
+
+
+
+  .card, .offer-card{ background-position: center;
     background-size: cover;
     transition: transform 0.3s ease-in-out; }
   .card-1{
@@ -582,7 +594,248 @@ margin-right: 5px;}
   .card-3{
     background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images/premium.png');
   }
- 
+
+  .scroll-btns{ background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    /* top: 50%; */
+    transform: translateY(-50%);
+    z-index: 1;}
+
+
+
+    /* /offers
+     */
+
+
+     .offer-container{
+        display: flex;
+        flex-direction: column;
+        background-color:white;
+        
+        overflow: hidden;
+        display: flex;
+        max-width: 100vw; 
+      
+    }
+    .offer-header{
+        display: flex;
+justify-content: space-between;  
+padding-left: 20px;
+padding-right: 20px;      
+    }
+    .offer{
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .all-offers{font-size: 12px;
+        font-weight: bold;
+        text-decoration: none;
+    color: rgb(24, 44, 192);}
+   
+    
+      
+    
+
+    .offers {
+        display: flex;
+        
+        box-sizing: border-box;
+        width: fit-content;
+       
+        padding-left: 20px;
+        gap: 20px;
+       
+        display: flex;
+        min-width: 1680px;
+        transition: transform 0.5s ease-in-out; 
+      }
+
+    
+      .offer-card-parent {
+        
+        flex: 0 0 300px; 
+       
+        transition: transform 0.5s ease-in-out; 
+        /* background-color: red; */
+        max-width: 400px;
+        min-height: 350px;
+        border: 1px solid #ccc;
+        margin-right: 15px;
+    background-color: aqua; }
+
+      .offer-card-img-container{
+        height: 55%;
+        width: 100%;
+        /* background-color: rgb(189, 47, 255); */
+        display: inline-block;
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+     .offer-card-image{
+        height: 110%;
+        width: 100%;
+        background-color: white;
+        border: 2px solid red;
+        /* background-image: url('./images//offers/iveria.jpg'); */
+        border-radius: 5px;
+        background-position: center;
+        background-size: cover;
+        transition: all 0.3s ease-in-out;
+        z-index: 0;
+     }
+
+     .offer-card-parent:hover .offer-card-image {
+        transform: translateY(-2%); 
+      }
+
+      .overlay-div {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        width: 80px; 
+        height: 50px; 
+        background-color: white; 
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transition: all 0.3s ease; 
+        
+      }
+      .offer-card-description{
+        height: 50%;
+        
+        /* background-color: yellow; */
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+
+
+      }
+      .offer-list{
+        list-style: none;
+        font-size: 12px;
+        cursor: pointer;
+        
+        font-weight: bold;
+        display: flex;
+        align-items: start;
+        padding-top: 20px;
+        /* justify-content: space-around; */
+       
+      }
+      .offer-description{
+        font-size: 16px;
+        font-weight: bold;
+        /* background-color: green; */
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      .offer-description:hover{cursor: pointer;}
+
+      .offer-list li a{
+        text-decoration: none;
+        color: rgb(111, 120, 123);
+        padding: 10px;
+      }
+
+      .offer-card{ background-position: center;
+        background-size: cover;
+        transition: transform 0.3s ease-in-out; }
+       .image-1{
+     
+     
+        background-image: url('./images/offers/iveria.jpg');
+       
+      }
+       .image-2{
+        background-image: url('./images/offers/tegeta.png');
+      }
+       .image-3{
+        background-image: url('./images/offers/tegetaBatumi.png');
+      }
+      .image-4{
+        background-image: url('./images/offers/meridien.png');
+      }
+      .image-5{
+        background-image: url('./images/offers/colosseum.png');
+      }
+
+    
+
+      .offers::-webkit-scrollbar {
+        width: 10px !important;
+        display: none;
+      }
+
+      /* //slider */
+
+      .slider{
+        height: 50px;
+        width: 100%;
+        background-color: aqua;
+       position: relative;
+        display: flex;
+        flex-direction: row;
+justify-content: space-between;
+align-items: center !important;
+
+padding-left: 20px;
+      }
+      .slider-bar{
+        width: 90%;
+       
+        position: relative;
+        align-items: center;
+        background-color: red;
+      }
+      .slider-bar span{
+        /* position: absolute; */
+        display: flex;
+        width:90px;
+        height: 2px;
+        color: blue;
+        background-color: blue;
+        transition: transform 0.3s ease;
+    
+      }
+      .slider-bar span:hover{
+        cursor: pointer;
+      }
+      .slider-btns{
+        
+        display: none;
+        width: 10%;
+justify-content: space-between;
+       /* padding-left: 5px; */
+       background-color: green;
+       align-items: center;
+       padding-top: 15px;
+       margin-left: 10px;
+       padding-right: 3px;
+       /* padding-right: 20px; */
+      }
+   
+   .left i{font-size: 16px !important;
+    color: blue !important;
+}
+   
+
+   
+   .left:hover{
+    cursor: pointer;
+   }
+
+   .right:hover{
+    cursor: pointer;
+   }
+
   .card-1:hover, .card-2:hover, .card-3:hover{
     
     transform: scale(1.01); 
@@ -604,12 +857,66 @@ margin-right: 5px;}
     color: white;
    
   }
+  .card-content p{
+    font-size: 24px;
+  }
   .card-content a {padding: 0;
 
 color: white;
-font-size: 12px;
+font-size: 14px;
+font-weight: bold;
 }
 
+.statistics{
+    padding: 120px 20px ;
+   
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stastistics-card{
+    height: 150px;
+    /* background-color: rgb(0, 128, 255); */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    
+}
+.numbers{
+    font-size: 36px;
+    font-weight: bold
+}
+.statistics-description{
+    font-size: 14px;
+    color: rgb(85, 95, 98);
+}
+
+@media(min-width:480px){
+    .numbers{
+        font-size: 44px;
+    }
+    .statistics-description{
+        font-size: 16px;
+    }
+    .stastistics-card{
+        padding-bottom: 40px;
+        padding-top: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
+        height: 200px;
+    }
+    .offer{
+        font-size: 20px;
+    }
+    .offer-paragragh a span{
+        font-size: 14px;
+    }
+
+}
 @media (min-width: 768px) {
 .header-container{
     width: 720px;
@@ -661,7 +968,7 @@ font-size: 12px;
     
 }
 .fa-arrow-left{
-display: none !important;}
+display: none ;}
 
 
 .menu-container{
@@ -799,6 +1106,35 @@ padding-left: 5px;
         left: 60px;
         bottom: 30px;
      }
+     .statistics{
+        flex-direction: row;
+        background-color: green;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+     }
+     .stastistics-card{
+        flex: 1 1 30%;
+     }
+     .offer{
+        font-size: 24px;
+    }
+    .offer-paragragh a span{
+        font-size: 16px;
+    }
+    .sliderthumb{
+        width: 2000px;
+    }
+    .slider-bar span{
+        width:250px
+    }
+    .slider-btns{
+        padding-right: 0px !important;
+justify-content: space-between;    }
+
+.left i, .right i{
+    font-size: 24px !important;
+}
   
  } 
 
@@ -828,7 +1164,7 @@ background-color: rgb(128, 0, 79);
 }
 .menu-container{
     background-color: rgb(255, 234, 0);
-    padding: 0pz;
+    padding: 0px;
 }
 .tbc-concept-container{width: 1100px;
     justify-content: center;
@@ -844,5 +1180,30 @@ background-color: rgb(128, 0, 79);
 }
 .packages-container, .subscribe-text, .menu-container, .additional-menu-space, .header-container{width: 1100px;}
 
+
+.offer-card-parent {
+        
+    flex: 0 0 400px; 
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(225, 228, 229);
+  transition: box-shadow 0.7 ease-in-out;
+
+   
+  }
+
+  .offer-card-parent:hover{
+  box-shadow: 10px 10px 25px rgba(104, 103, 103, 0.3);
+
+  }
+
+  .offers{
+    min-width: 2180px !important;
+  }
 }
  
+@media(min-width:2000px){
+    .header-container{
+        background-color: #18c05e;
+    }
+}
