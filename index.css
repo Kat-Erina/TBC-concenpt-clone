@@ -13,17 +13,23 @@ header{
     z-index: 1;
     background-color: white;
     width: 100%;
-    border: 2px solid red;
     justify-content: center;
 }
-.header-container{
+footer{
+    display: flex;
+    margin-top: 0;
+    z-index: 1;
+    background-color: white;
+    width: 100%;
+    justify-content: center;
+}
+.header-container, .footer-container{
     display: flex;
     width: 100%;
        justify-content: space-between;
-       background-color: blue;
-       border: 2px solid rgb(25, 0, 255);
        padding: 0 0 0 15px ;
 }
+.footer-container{display: none;}
    .header-logo{
         display: flex;
         padding: 0;
@@ -35,7 +41,6 @@ header{
     }
 .header-meanu{
 display: flex;
-border:2px solid blue;
 }
 .menu-items-list{
     list-style: none;
@@ -50,7 +55,6 @@ display: none;
 .menu-item{
     margin-left: 30px;
 font-size: 16px;
-border:2px solid red
         }
 
       
@@ -63,7 +67,6 @@ border:2px solid red
     font-weight: bold;
     color: rgb(24, 44, 192);
      transition: color 0.3s ease-in-out;
-     border: 2px solid red;
      margin-right: 10px;
 }
 .subscribe:hover{
@@ -83,7 +86,6 @@ border:2px solid red
 }
 
 .header-concept{
-    background-color: red;
     display: none ;
     height: 100%;
      color:   rgb(85, 95, 98);
@@ -101,7 +103,6 @@ font-weight: 600;
     cursor: pointer;
     width:35px;
     padding: 0;
-    background-color: aquamarine
 }
 .menu{
     display: flex;
@@ -121,7 +122,7 @@ font-weight: 600;
     color: rgb(56, 83, 202)
 }
 
-.hamburger-menu-bar{background-color: aquamarine;
+.hamburger-menu-bar{
    height: 2px;
     background-color:  rgb(108, 102, 102);
     margin:6px ;
@@ -148,6 +149,7 @@ font-weight: 600;
   
 }
 
+
 .hamburger-menu.active .hamburger-menu-bar:nth-child(1){
 transform: translateY(8px) rotate(-45deg);
 width:20px
@@ -164,7 +166,6 @@ width:20px
     .language-container{
         display: none;
    align-items: center; 
-   border: 2px solid red;
    padding: 0;
 }
 
@@ -177,7 +178,6 @@ width:20px
    
     .fa-globe{
         margin-right: 5px;
-        border:2px solid red
     }
 
     .menu-item:hover{
@@ -186,7 +186,6 @@ width:20px
 
     main{
         padding-top: 30px;
-        /* margin-top: 80px; */
         z-index: 0;
         position: relative;
         background-color: rgb(236, 240, 241);
@@ -244,9 +243,6 @@ padding-bottom: 40px;
 }
 
     .open-menu-bar{
-        padding-top: 30px;
-        opacity: 0;
-        display: none;
         transition: all 0.2s ease-in-out;
         width: 100%;
         background-color: white;
@@ -281,6 +277,7 @@ padding-bottom: 40px;
          margin-top: 10px;
        border-radius: 10px;
         padding-left: 50px;
+        background-color: rgb(189, 186, 186);
        }
     .english:hover{
         background-color: rgb(195, 189, 189);
@@ -301,7 +298,6 @@ padding-bottom: 40px;
     position: absolute;
     padding-top: 20px;
     z-index: 1;
-    border: 2px solid red;
     visibility: hidden;
     opacity: 0;
     flex-direction: column;
@@ -348,7 +344,6 @@ padding-bottom: 40px;
 .dropbtn{
     text-decoration: none;
     color: rgb(33, 37, 41);
-    border-bottom: 0px solid red;
     transition: all 0.5s ease-in-out;
     transition: all 0.8s ease-in-out;
     border-bottom:none;
@@ -397,7 +392,6 @@ padding-bottom: 40px;
       height: 150px;
       width:400px;
       padding-left: 1%;
-      border: 2px solid red;
    }
 
    .digital-banking i:hover{color: rgb(56, 89, 238)}
@@ -456,7 +450,6 @@ padding-bottom: 40px;
     display: flex;
     flex-direction: row;
     padding-left: 40px;
-    border: 2px solid red;
     height: 100%;
     text-align: center;
     align-items: center;
@@ -473,7 +466,7 @@ padding-bottom: 40px;
    justify-content: space-between;
     text-align: center;
 }
-.footer-logo{border: 2px solid red;
+.footer-logo{
     width: 100%;
 display: flex;}
 
@@ -491,13 +484,13 @@ margin-top: 20px;}
 .go-back{
     padding-left: 15px;
     font-size: 12px;
-    margin-bottom: 40px;
+    margin-top: 50px;
 }
 .fa-arrow-left{font-size: 10px;
 margin-right: 5px;}
 
-.tbc-concept-container{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images//main.webp');
+ .shared-styling{
+    
     height: 350px;
     background-size: cover;
     background-position: center top;
@@ -507,7 +500,9 @@ margin-right: 5px;}
     color: white;
     padding: 0 20px;
 }
+.tbc-concept-container{background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images//main.webp')}
 .text{margin-top: 150px;}
+.tbc-concept-container{margin-top: 20px;}
 .text p{
    font-weight: bold; 
    
@@ -516,7 +511,6 @@ margin-right: 5px;}
     font-weight: 100;
     font-size: 15px;
     width: 100%;
-    border:2px solid red;
     height: 80px;
 }
 #subscribe-link{
@@ -543,10 +537,8 @@ margin-right: 5px;}
     
 }
 
-/* //testing */
 
 .packages-container, .statistics {
-    background-color: aquamarine;
     z-index: 0;
     scroll-behavior: smooth;
 }
@@ -576,11 +568,7 @@ margin-right: 5px;}
    
   }
 
-  /* //vtestav */
-
-
-
-  .card, .offer-card, .product-card{ background-position: center;
+  .card, .offer-card, .product-card, .award-card{ background-position: center;
     background-size: cover;
     transition: transform 0.3s ease-in-out; }
   .card-1{
@@ -600,17 +588,13 @@ margin-right: 5px;}
     padding: 10px;
     cursor: pointer;
     position: absolute;
-    /* top: 50%; */
     transform: translateY(-50%);
     z-index: 1;}
 
 
 
-    /* /offers
-     */
 
-
-     .offer-container, .product-container{
+     .offer-container, .product-container, .awards-container{
         display: flex;
         flex-direction: column;
         background-color:white;
@@ -651,7 +635,7 @@ padding-right: 20px;
       }
     
 
-    .offers {
+    .offers, .awards {
         
         min-width: 1680px;
       }
@@ -660,7 +644,7 @@ padding-right: 20px;
     .products{
         min-width: 1000px;
     }
-      .offer-card-parent, .product-card-parent {
+      .offer-card-parent, .product-card-parent, .awards-card-parent {
         
         flex: 0 0 300px; 
        
@@ -669,11 +653,11 @@ padding-right: 20px;
         min-height: 350px;
         border: 1px solid #ccc;
         margin-right: 15px;
-    background-color: aqua; }
+ }
 
    
 
-      .offer-card-img-container, .product-card-img-container{
+      .offer-card-img-container, .product-card-img-container, .awards-card-img-container{
         height: 55%;
         width: 100%;
         display: inline-block;
@@ -682,19 +666,27 @@ padding-right: 20px;
         overflow: hidden;
       }
 
-     .offer-card-image, .product-card-image{
+     .offer-card-image, .product-card-image, .award-card-image{
         height: 110%;
         width: 100%;
         background-color: white;
-        border: 2px solid red;
         border-radius: 5px;
         background-position: center;
         background-size: cover;
         transition: all 0.3s ease-in-out;
         z-index: 0;
      }
+     .award-card-image{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+     .award-card-image img{
+        height: 30%;
+        width: 30%;
+     }
 
-     .offer-card-parent:hover .offer-card-image, .product-card-parent:hover .product-card-image  {
+     .offer-card-parent:hover .offer-card-image, .product-card-parent:hover .product-card-image, .awards-card-parent:hover .award-card-image  {
         transform: translateY(-2%); 
       }
 
@@ -713,7 +705,7 @@ padding-right: 20px;
         transition: all 0.3s ease; 
         
       }
-      .offer-card-description{
+      .offer-card-description, .awards-card-description{
         height: 50%;
         
         margin: 0;
@@ -722,7 +714,7 @@ padding-right: 20px;
 
 
       }
-      .offer-list{
+      .offer-list, .award-list{
         list-style: none;
         font-size: 12px;
         cursor: pointer;
@@ -750,8 +742,7 @@ padding-right: 20px;
       
        .image-1{
      
-     
-        background-image: url('./images/offers/iveria.jpg');
+     background-image: url('./images/offers/iveria.jpg');
        
       }
        .image-2{
@@ -769,16 +760,9 @@ padding-right: 20px;
 
     
 
-      .offers::-webkit-scrollbar {
-        width: 10px !important;
-        display: none;
-      }
-
-
-      .slider, .product-slider{
+      .slider, .product-slider, .awards-slider{
         height: 50px;
         width: 100%;
-        background-color: aqua;
        position: relative;
         display: flex;
         flex-direction: row;
@@ -787,14 +771,13 @@ align-items: center !important;
 
 padding-left: 20px;
       }
-      .slider-bar, .product-slider-bar{
+      .slider-bar, .product-slider-bar, .awards-slider-bar{
         width: 90%;
        
         position: relative;
         align-items: center;
-        background-color: red;
       }
-      .slider-bar span, .product-slider-bar span{
+      .slider-bar span, .product-slider-bar span, .awards-slider-bar span{
         display: flex;
         width:90px;
         height: 2px;
@@ -803,27 +786,26 @@ padding-left: 20px;
         transition: transform 0.3s ease;
     
       }
-      .slider-bar span:hover, .product-slider-bar span:hover{
+      .slider-bar span:hover, .product-slider-bar span:hover, .awards-slider-bar span:hover{
         cursor: pointer;
       }
-      .slider-btns, .product-slider-btns{
-        
+      .slider-btns, .product-slider-btns, .awards-slider-btns{
+        display: none;
         width: 10%;
 justify-content: space-between;
-       background-color: green;
        align-items: center;
        padding-top: 15px;
        margin-left: 10px;
        padding-right: 3px;
       }
    
-   .left i{font-size: 16px !important;
+   .left i, .left-product-btn i, .right-product-btn i, .award-left-btn i, .award-right-btn i{font-size: 16px !important;
     color: blue !important;
 }
    
 
    
-   .left:hover{
+   .left:hover, .award-left-btn:hover, .award-right-btn:hover{
     cursor: pointer;
    }
 
@@ -904,7 +886,6 @@ font-weight: bold;
 
 
 .bank-img{
-    background-color: red;
 width: 300px;
     height: 450px;
     background-image: url('./images//digitalBanking.png');
@@ -915,7 +896,6 @@ width: 300px;
     margin-bottom: 30px;
 }
 .download{
-    border:1px solid rgb(24, 44, 192);
     color:rgb(24, 44, 192);
     display: flex;
     align-items: center;
@@ -951,6 +931,117 @@ width: 300px;
 .app{
     margin-left: 40px;
 }
+.product-image-1{
+    background-image: url('./images/digital.png');
+    
+}
+.product-image-2{
+    background-image: url('./images/premium.png');
+   
+}
+.product-image-3{
+    background-image: url('./images/more.png');
+   
+}
+.list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.product-card-title{
+    font-size: 16px;
+    color: black;
+    font-size: bold;
+    text-decoration: none;
+   
+}
+.product-card-description{
+    font-size: 12px;
+    color: black;
+    color: rgb(85, 95, 98);
+    text-decoration: none;
+    overflow: hidden;
+   
+}
+.private-banker-container{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images/banker.png');
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+ .footer-menu{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+ }
+ .footer-menu-list{
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+ }
+
+ .footer-menu-list ul{
+    list-style: none;
+ }
+
+ .footer-menu-list li ul li{
+    margin-bottom: 15px;
+    cursor: pointer;
+ }
+ .first-item a{
+    font-weight: bold;
+text-decoration: none;
+color: black }
+
+ 
+
+.floating-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.menu-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 50%;
+    font-size: 38px;
+    cursor: pointer;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.menu-item {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.2s ease-in-out;
+    border-radius: 50%;
+    padding: 15px;
+}
+.menu-item:hover{
+    color: white;
+    background-color: #319bb5;
+}
+.item, .item a, .first-item {
+    text-decoration: none !important;
+    color: grey
+}
+
 
 
 @media(min-width:480px){
@@ -989,9 +1080,8 @@ width: 300px;
 
 }
 @media (min-width: 768px) {
-.header-container{
+.header-container, .footer-container{
     width: 720px;
-    background-color: aqua;
     padding: 0;
     }
 
@@ -1007,7 +1097,6 @@ width: 300px;
      
     }
     .header-logo{
-        background-color: green;
         align-items: center;
        
     }
@@ -1035,7 +1124,7 @@ width: 300px;
     .go-back{
     padding: 0;
     width: 720px;
-    border: 2px solid red;
+    margin-top: 80px;
     
 }
 .fa-arrow-left{
@@ -1044,10 +1133,7 @@ display: none ;}
 
 .menu-container{
     width: 720px ;
-    
-    background-color: yellow;
-    background-color: blue;
-}
+    }
 
 .tbc-concept-container{
   border-radius: 5px;
@@ -1113,7 +1199,6 @@ display: none ;}
 
 
   .digital-bank-container{
-    background-color: rgb(114, 44, 135);
     height: 500px !important;
     width: 720px;
     padding-top: 50px;
@@ -1130,7 +1215,6 @@ display: none ;}
     flex-direction: row;
     width: 100%;
     height: 500px;
-    background-color: #18c05e;
     z-index: 1;
     align-items: center;
     padding: 70px 0;
@@ -1140,7 +1224,6 @@ display: none ;}
   .purchase-info{
     width: 75%;
     height: 100%;
-    border:2px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1158,7 +1241,6 @@ display: none ;}
     padding: 20px;
     width: 180px;
     background-color: #dfdbdb;
-    border:1px solid rgb(24, 44, 192);
     color:rgb(24, 44, 192);
     border-radius: 5px;
     font-size: 14px;
@@ -1174,11 +1256,11 @@ display: none ;}
   .big-bank-img{
     width: 25%;
     height: 100%;
-    border:2px solid blue;
     background-image: url('./images/digitalBanking.png');
     background-position: center;
     background-size: cover;
   }
+  
   
 }
 
@@ -1187,36 +1269,29 @@ display: none ;}
     padding-top:0 ;
    }
    
-   .header-container{
+   .header-container, .footer-container{
     justify-content: center;
 width: 95%;
-background-color: aqua;
 
     
    }
-   .header-meanu{
-    background-color: yellow;
- 
-   }
-   .header-concept{background-color: green; 
+   
+   .header-concept{
 margin-top: 15px;}
    .header-logo{
    
-    border: 2px solid green;
-    background-color: brown;
+    
     width: 10rem;
    }
     .logo{
         width:35px;
       
-        border: 2px solid red;
     }
     
     .menu-items-list{
         display: flex;
         height: 100%;
-        border: 2px solid red;
-background-color: rgb(81, 146, 81);
+
 width: 500px;
 padding-left: 5px;
 
@@ -1239,7 +1314,10 @@ padding-left: 5px;
 }
 .menu-container{width: 909px;}
    
-    .open-menu-bar{display: none;}
+
+    .open-menu-bar{
+        display: none;
+    }
     .tbc-concept-container{
         height: 400px;
     }
@@ -1250,7 +1328,6 @@ padding-left: 5px;
      }
      .statistics{
         flex-direction: row;
-        background-color: green;
         flex-wrap: wrap;
         justify-content: space-between;
 
@@ -1264,17 +1341,19 @@ padding-left: 5px;
     .offer-paragragh a span{
         font-size: 16px;
     }
-    .sliderthumb, .products-sliderthumb{
+    .sliderthumb, .products-sliderthumb, .awards-sliderthumb{
         width: 2000px;
     }
-    .slider-bar span, .product-slider-bar span{
+    .slider-bar span, .product-slider-bar span, .awards-slider-bar span{
         width:250px
     }
-    .slider-btns, .product-slider-btns{
+    .slider-btns, .product-slider-btns, .awards-slider-btns{
         padding-right: 0px !important;
 justify-content: space-between;    }
-
-.left i, .right i{
+ a{
+    cursor: pointer;;
+ }
+.left i, .right i,  .left-product-btn i, .right-product-btn i, .award-left-btn i, .award-right-btn i{
     font-size: 24px !important;
 }
 .small-download{
@@ -1283,15 +1362,30 @@ justify-content: space-between;    }
 .purchase-links{
     display: flex;
 }
+
+.small-footer{
+    flex-direction: row;
+}
+.terms{
+    flex-direction: row;
+}
+.terms ul{
+    width: 500px;
+    justify-content: end;
+}
+.footer-container{
+    display: flex;
+
+}
   
  } 
+
 
 
 
  @media (min-width: 1200px) {
     header{
         width: 100%;
-        border: 2px solid blue;
         overflow-x: visible;
     }
     
@@ -1305,13 +1399,11 @@ justify-content: space-between;    }
     display: flex;
     justify-content: space-between;
    
-background-color: rgb(128, 0, 79);
 }
 .logo{
     height: 30px;
 }
 .menu-container{
-    background-color: rgb(255, 234, 0);
     padding: 0px;
 }
 .tbc-concept-container{width: 1100px;
@@ -1321,15 +1413,14 @@ background-color: rgb(128, 0, 79);
     
 }
 .subscribe-text{
-    background-color: aqua;
     font-size: 2.2rem;
     line-height: 1.5;
     padding:100px 0 100px 0;
 }
-.packages-container, .subscribe-text, .menu-container, .additional-menu-space, .header-container{width: 1100px;}
+.packages-container, .subscribe-text, .menu-container, .additional-menu-space, .header-container, .footer-container{width: 1100px;}
 
 
-.offer-card-parent {
+.offer-card-parent, .awards-card-parent {
         
     flex: 0 0 400px; 
     margin-bottom: 20px;
@@ -1340,7 +1431,7 @@ background-color: rgb(128, 0, 79);
    
   }
 
-  .offer-card-parent:hover, .product-card-parent:hover{
+  .offer-card-parent:hover, .product-card-parent:hover, .awards-card-parent:hover{
   box-shadow: 10px 10px 25px rgba(104, 103, 103, 0.3);
 
   }
@@ -1348,4 +1439,36 @@ background-color: rgb(128, 0, 79);
   .offers{
     min-width: 2180px !important;
   }
+  .go-back{
+    margin-top: 70px;
+    
+}
+.floating-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    width: 70px;
+    height: 70px;
+}
+
+.menu-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 50%;
+    font-size: 48px;
+    cursor: pointer;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+ 
 }

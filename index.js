@@ -7,6 +7,7 @@ const additionalMenu=document.querySelector('.additional-menu-space');
 const dropBtn=document.querySelectorAll('.dropbtn');
 const dropDownContentList=document.querySelectorAll('.dropdown-content');
 const menuContainer=document.querySelector('.menu-container');
+let main=document.querySelector('.menu-container')
 
 
 const offers=document.querySelector('.offers');
@@ -38,6 +39,41 @@ let productSliderRightBtn=document.querySelector('.right-product-btn')
 
 
 
+
+const awards=document.querySelector('.awards');
+const parentContainerAwards=document.querySelectorAll('.awards-card-parent')
+const awardsContainer=document.querySelector('.awards-container');
+let awardsSliderWidth=awards.clientWidth;
+const awardItemWidth=parentContainerAwards[3].getBoundingClientRect().width
+let awardsSlidesAmount=Math.abs(Math.ceil((awardsSliderWidth-window.innerWidth)/awardItemWidth)+2);
+const awardsSliderThumb=document.querySelector('.awards-sliderthumb');
+const parentAwardsSlider=document.querySelector('.awards-slider');
+const awardsSliderBtns=document.querySelector('.awards-slider-btns');
+let sliderthumLocationAward=(parentAwardsSlider.clientWidth-awardsSliderThumb.clientWidth+10-awardsSliderBtns.clientWidth)/(awardsSlidesAmount+1);
+const leftButtonAward=document.querySelector('.award-left-btn');
+const rightButtonAward=document.querySelector('.award-right-btn');
+
+let clicked=false;
+
+
+document.getElementById('menuButton').addEventListener('click', (e)=> {
+  let menuContent = document.getElementById('menuContent');
+  if (menuContent.style.display === 'block') {
+      menuContent.style.display = 'none';
+  } else {
+      menuContent.style.display = 'block';
+  }
+});
+
+window.addEventListener('click', (event) =>{
+  let  menuContent = document.getElementById('menuContent');
+  if (event.target !== document.getElementById('menuButton') && !menuContent.contains(event.target)) {
+      menuContent.style.display = 'none';
+  }
+});
+
+
+
 let selectedLanguage=window.localStorage.getItem('language')|| "ka";
 if(selectedLanguage==='eng'){
   englishLanguageOption.textContent="ქარ";
@@ -48,8 +84,7 @@ if(selectedLanguage==='eng'){
 
 hamburgerMenu.addEventListener('click', ()=>{
   hamburgerMenu.classList.toggle('active')  
-  openMenuBar.classList.toggle('open');
-  menuContainer.classList.toggle('hidden')
+  main.classList.toggle('hidden')
 })
 
 geoLanguage.addEventListener('mouseenter',()=> {
@@ -136,7 +171,9 @@ function checkViewportWidth() {
       
   })
   if(window.innerWidth>=992){
-    menuContainer.classList.remove('hidden'), openMenuBar.classList.remove('open')
+    menuContainer.classList.remove('hidden'), 
+    openMenuBar.classList.remove('open');
+    hamburgerMenu.classList.remove('active')
   }
 
 }
@@ -171,9 +208,15 @@ let isAnimating = false;
 let mouseIsmoving=false;
 let currentSlideIndex=0;
 let currentProductSlideIndex=0;
-let main=document.querySelector('.menu-container')
+let currentAwardsSlideIndex=0
+let xCoordinateforAward=0;
+
 let rightCoordinate=offers.getBoundingClientRect().right;
 let rightProductCoordinate=products.getBoundingClientRect().right;
+
+let isAnimatingAward = false; 
+let mouseIsmovingAward=false;
+let awardsLeftB
 
   function debounce(func, delay) {
     let timeout;
@@ -196,6 +239,23 @@ let rightProductCoordinate=products.getBoundingClientRect().right;
       mouseIsmoving=false;
 }
 
+
+
+
+handleAwardsRightClick=()=>{
+ 
+  if (awards.getBoundingClientRect().right > main.getBoundingClientRect().right) {
+    currentAwardsSlideIndex++;
+         awards.style.transform = `translateX(${(-currentAwardsSlideIndex) * (awardItemWidth + 35)}px)`;
+         awardsSliderThumb.style.transform=`translateX(${currentAwardsSlideIndex*sliderthumLocationAward}px)`
+       } 
+   
+       isAnimatingAward = false;
+       mouseIsmovingAward=false;
+ }
+
+
+
 handleLeftClick=()=>{
   
   if(currentSlideIndex===0)  return
@@ -206,13 +266,45 @@ handleLeftClick=()=>{
                 } 
  mouseIsmoving=false
         }
+
+
+
+        handleLeftClickAward=()=>{
+  
+          if(currentAwardsSlideIndex===0)  return
+                  else  {
+                         awards.style.transform=`translateX(${awards.getBoundingClientRect().left+awardItemWidth+35-awardsContainer.getBoundingClientRect().left}px`;
+                         currentAwardsSlideIndex--;
+                       awardsSliderThumb.style.transform=`translateX(${currentAwardsSlideIndex*sliderthumLocationAward}px)`
+                        } 
+         mouseIsmovingAward=false
+                }
+
+
    const debouncedHandleSlideRight = debounce(handleRightClick, 300);
 rightButton.addEventListener('click', debouncedHandleSlideRight);
+
+
+const debounceHandleSlideRightAward=debounce(handleAwardsRightClick, 300)
+rightButtonAward.addEventListener('click', debounceHandleSlideRightAward)
+const debounceHandleSlideLeftAward=debounce(handleLeftClickAward, 300);
+leftButtonAward.addEventListener('click', debounceHandleSlideLeftAward)
+
+
 
 offers.addEventListener('mousedown', (event)=>{
   mouseIsmoving=true;
   xCoordinate=event.clientX;
   sliderBtns.classList.add('visible')
+ })
+
+
+
+
+ awards.addEventListener('mousedown', (event)=>{
+  mouseIsmovingAward=true;
+  xCoordinateforAward=event.clientX;
+  awardsSliderBtns.classList.add('visible')
  })
 
  offers.addEventListener('mouseover', (e)=>{
@@ -236,14 +328,40 @@ handleRightClick();
  });
 
 
+
+ awards.addEventListener('mouseover', (e)=>{
+  awardsSliderBtns.style.display="flex"
+  let coordinate=e.clientX;
+  if(mouseIsmovingAward){
+    coordinate=e.clientX
+    if(xCoordinateforAward<coordinate){
+    
+      xCoordinateforAward=e.clientX
+    handleLeftClickAward();
+
+  } else {
+
+xCoordinate=e.clientX;
+handleAwardsRightClick();
+
+}
+}
+  
+ });
+
+
  offers.addEventListener('mouseup', ()=>{
   mouseIsmoving=false;
+ 
+ })
+ awards.addEventListener('mouseup', ()=>{
+  mouseIsmovingAward=false;
  
  })
 
 
 
- offers.addEventListener('touchstart', ()=>{
+ offers.addEventListener('touchstart', (event)=>{
   mouseIsmoving=true;
   xCoordinate=event.touches[0].clientX;
   
@@ -258,6 +376,26 @@ handleRightClick();
   } else {
 handleRightClick();
 mouseIsmoving=false;
+}
+}})
+
+
+
+awards.addEventListener('touchstart', (event)=>{
+  mouseIsmovingAward=true;
+  xCoordinateforAward=event.touches[0].clientX;
+  
+ })
+
+ awards.addEventListener('touchmove', (e)=>{
+  let coordinate=e.touches[0].clientX;
+ if(mouseIsmovingAward){
+    if(xCoordinateforAward<coordinate){
+    handleLeftClickAward();
+    mouseIsmovingAward=false;
+  } else {
+handleAwardsRightClick();
+mouseIsmovingAward=false;
 }
 }})
 
