@@ -1,3 +1,5 @@
+'use strict'
+
 const hamburgerMenu=document.querySelector('.hamburger-menu');
 const openMenuBar=document.querySelector('.open-menu-bar');
 const languageContainer=document.querySelector('.languages');
@@ -7,7 +9,8 @@ const additionalMenu=document.querySelector('.additional-menu-space');
 const dropBtn=document.querySelectorAll('.dropbtn');
 const dropDownContentList=document.querySelectorAll('.dropdown-content');
 const menuContainer=document.querySelector('.menu-container');
-let main=document.querySelector('.menu-container')
+let main=document.querySelector('.menu-container');
+let websiteTextContent;
 
 
 const offers=document.querySelector('.offers');
@@ -56,7 +59,7 @@ const rightButtonAward=document.querySelector('.award-right-btn');
 let clicked=false;
 
 
-document.getElementById('menuButton').addEventListener('click', (e)=> {
+document.getElementById('menuButton').addEventListener('click', ()=> {
   let menuContent = document.getElementById('menuContent');
   if (menuContent.style.display === 'block') {
       menuContent.style.display = 'none';
@@ -209,14 +212,15 @@ let mouseIsmoving=false;
 let currentSlideIndex=0;
 let currentProductSlideIndex=0;
 let currentAwardsSlideIndex=0
+let xCoordinate=0;
 let xCoordinateforAward=0;
+let xCoordinateforProduct=0;
 
 let rightCoordinate=offers.getBoundingClientRect().right;
 let rightProductCoordinate=products.getBoundingClientRect().right;
 
 let isAnimatingAward = false; 
 let mouseIsmovingAward=false;
-let awardsLeftB
 
   function debounce(func, delay) {
     let timeout;
@@ -226,288 +230,169 @@ let awardsLeftB
     };
   }
 
-
- handleRightClick=()=>{
+let offersParam={
+  container:offers,
+   slideIndex:currentSlideIndex,
+   itemWidth,
+   sliderThumb,
+   sliderthumLocation,
+   isAnimating,
+   mouseIsmoving,
+   xCoordinate,
+   btns:sliderBtns
  
- if (offers.getBoundingClientRect().right > main.getBoundingClientRect().right) {
-        currentSlideIndex++;
-        offers.style.transform = `translateX(${(-currentSlideIndex) * (itemWidth + 35)}px)`;
-        sliderThumb.style.transform=`translateX(${currentSlideIndex*sliderthumLocation}px)`
-      } 
-  
-      isAnimating = false;
-      mouseIsmoving=false;
+ }
+ let paramsObjectAward={
+  container:awards,
+  slideIndex:currentAwardsSlideIndex,
+  itemWidth:awardItemWidth,
+  sliderThumb:awardsSliderThumb,
+  sliderthumLocation:sliderthumLocationAward,
+  isAnimating:isAnimatingAward,
+  mouseIsmoving:mouseIsmovingAward,
+  xCoordinate:xCoordinateforAward,
+  btns:awardsSliderBtns
 }
 
+let isAnimatingProducts=false;
+let mouseIsmovingForProduct=false;
 
-
-
-handleAwardsRightClick=()=>{
- 
-  if (awards.getBoundingClientRect().right > main.getBoundingClientRect().right) {
-    currentAwardsSlideIndex++;
-         awards.style.transform = `translateX(${(-currentAwardsSlideIndex) * (awardItemWidth + 35)}px)`;
-         awardsSliderThumb.style.transform=`translateX(${currentAwardsSlideIndex*sliderthumLocationAward}px)`
-       } 
-   
-       isAnimatingAward = false;
-       mouseIsmovingAward=false;
- }
-
-
-
-handleLeftClick=()=>{
+const productsParamObject={
+container:products,
+  slideIndex:currentProductSlideIndex,
+  itemWidth:productItemWidth,
+  sliderThumb:productsSliderThumb,
+  sliderthumLocation:productsSliderthumLocation,
+  isAnimating:isAnimatingProducts,
+  mouseIsmoving:mouseIsmovingForProduct,
+  xCoordinate:xCoordinateforProduct,
+  btns:productsSliderBtns
   
-  if(currentSlideIndex===0)  return
+}
+
+function rightClick(paramObject){
+  console.log("dkjb")
+  if (paramObject.container.getBoundingClientRect().right > main.getBoundingClientRect().right) {
+    paramObject.slideIndex++;
+    paramObject.container.style.transform =`translateX(${(-paramObject.slideIndex) * (paramObject.itemWidth + 35)}px)`;
+    paramObject.sliderThumb.style.transform=`translateX(${paramObject.slideIndex*paramObject.sliderthumLocation}px)`;
+       } 
+      paramObject.isAnimating = false;
+      paramObject.mouseIsmoving=false;
+       }
+
+ 
+function  leftClick(paramObject, container){
+  if(paramObject.slideIndex===0)  return
           else  {
-                 offers.style.transform=`translateX(${offers.getBoundingClientRect().left+itemWidth+35-offerContainer.getBoundingClientRect().left}px`;
-               currentSlideIndex--;
-               sliderThumb.style.transform=`translateX(${currentSlideIndex*sliderthumLocation}px)`
+            paramObject.container.style.transform=`translateX(${paramObject.container.getBoundingClientRect().left+paramObject.itemWidth+35-container.getBoundingClientRect().left}px`;
+            paramObject.slideIndex--;
+            paramObject.sliderThumb.style.transform=`translateX(${paramObject.slideIndex*paramObject.sliderthumLocation}px)`
                 } 
- mouseIsmoving=false
+ paramObject.mouseIsmoving=false,
+ paramObject.isAnimating=false
         }
 
 
 
-        handleLeftClickAward=()=>{
-  
-          if(currentAwardsSlideIndex===0)  return
-                  else  {
-                         awards.style.transform=`translateX(${awards.getBoundingClientRect().left+awardItemWidth+35-awardsContainer.getBoundingClientRect().left}px`;
-                         currentAwardsSlideIndex--;
-                       awardsSliderThumb.style.transform=`translateX(${currentAwardsSlideIndex*sliderthumLocationAward}px)`
-                        } 
-         mouseIsmovingAward=false
-                }
+function handleRightClick(){rightClick(offersParam)}
+const debouncedHandleSlideRight = debounce(handleRightClick, 300);
+function handleLeftClick(){leftClick(offersParam, offerContainer)};
+const debouncedHandleSlideLeft = debounce(handleLeftClick, 300);
 
 
-   const debouncedHandleSlideRight = debounce(handleRightClick, 300);
-rightButton.addEventListener('click', debouncedHandleSlideRight);
-
-
-const debounceHandleSlideRightAward=debounce(handleAwardsRightClick, 300)
-rightButtonAward.addEventListener('click', debounceHandleSlideRightAward)
+function handleAwardsRightClick(){rightClick(paramsObjectAward);}
+const debounceHandleSlideRightAward=debounce(handleAwardsRightClick, 300);
+function handleLeftClickAward(){leftClick(paramsObjectAward, awardsContainer)}
 const debounceHandleSlideLeftAward=debounce(handleLeftClickAward, 300);
+
+
+leftButton.addEventListener('click', debouncedHandleSlideLeft)
+rightButton.addEventListener('click',debouncedHandleSlideRight );
+
+rightButtonAward.addEventListener('click', debounceHandleSlideRightAward)
 leftButtonAward.addEventListener('click', debounceHandleSlideLeftAward)
 
 
+function handleRightClickforProduct(){rightClick(productsParamObject)}
+const debouncedHandleSlideRight2 = debounce(handleRightClickforProduct, 300);
+function handleLeftClickProduct(){leftClick(productsParamObject, productContainer)};
+const debouncedHandleSlideLeftProducts=debounce(handleLeftClickProduct, 300);
+productSliderRightBtn.addEventListener('click', debouncedHandleSlideRight2);
 
-offers.addEventListener('mousedown', (event)=>{
-  mouseIsmoving=true;
-  xCoordinate=event.clientX;
-  sliderBtns.classList.add('visible')
- })
+productSliderLeftBtn.addEventListener('click', debouncedHandleSlideLeftProducts);
+productSliderRightBtn.addEventListener('click', debouncedHandleSlideRight2);
 
 
+function handleMouseDown(paramObject, event){
+  paramObject.xCoordinate=event.clientX,
+  paramObject.mouseIsmoving=true
+}
 
+offers.addEventListener('mousedown', (event)=>{handleMouseDown(offersParam, event), console.log("offer works")})
+awards.addEventListener('mousedown', (event)=>{handleMouseDown(paramsObjectAward, event), console.log("awards works")})
+products.addEventListener('mousedown', (event)=>{handleMouseDown(paramsObjectAward, event), console.log("products works")})
 
- awards.addEventListener('mousedown', (event)=>{
-  mouseIsmovingAward=true;
-  xCoordinateforAward=event.clientX;
-  awardsSliderBtns.classList.add('visible')
- })
-
- offers.addEventListener('mouseover', (e)=>{
-  sliderBtns.style.display="flex"
-  let coordinate=e.clientX;
-  if(mouseIsmoving){
-    coordinate=e.clientX
-    if(xCoordinate<coordinate){
+function handleMouseOver(paramObj, event, leftFn, rightFn){
+  paramObj.btns.classList.add('visible')
+  paramObj.btns.style.display="flex"
+  let coordinate=event.clientX;
+  console.log(coordinate)
+  if(paramObj.mouseIsmoving){
+    coordinate=event.clientX
+    if(paramObj.xCoordinate<coordinate){
     
-    xCoordinate=e.clientX
-    handleLeftClick();
+      paramObj.xCoordinate=event.clientX
+    leftFn();
 
   } else {
 
-xCoordinate=e.clientX;
-handleRightClick();
+paramObj.xCoordinate=event.clientX;
+rightFn();
 
 }
 }
-  
- });
+paramObj.mouseIsmoving=false 
+}
+
+offers.addEventListener('mouseover', (event)=>handleMouseOver(offersParam, event, debouncedHandleSlideLeft, debouncedHandleSlideRight)
+);
+ awards.addEventListener('mouseover', (event)=>handleMouseOver(paramsObjectAward, event, debounceHandleSlideLeftAward, debounceHandleSlideRightAward)
+);
+products.addEventListener('mouseover', (event)=>handleMouseOver(productsParamObject, event, debouncedHandleSlideLeftProducts, debouncedHandleSlideRight2)
+);
 
 
 
- awards.addEventListener('mouseover', (e)=>{
-  awardsSliderBtns.style.display="flex"
-  let coordinate=e.clientX;
-  if(mouseIsmovingAward){
-    coordinate=e.clientX
-    if(xCoordinateforAward<coordinate){
-    
-      xCoordinateforAward=e.clientX
-    handleLeftClickAward();
+function handleTouchstart(paramObj, event){
+paramObj.mouseIsmoving=true;
+paramObj.xCoordinate=event.touches[0].clientX
+}
 
-  } else {
-
-xCoordinate=e.clientX;
-handleAwardsRightClick();
+function handleTouchmove(paramObject, event, leftFn, rightFn){
+  let {mouseIsmoving}=paramObject;
+  let coordinate=event.touches[0].clientX;
+  if(paramObject.mouseIsmoving){
+     if(paramObject.mouseIsmoving<coordinate){
+    leftFn()
+     mouseIsmoving=false;
+   } else {
+ rightFn();
+ mouseIsmoving=false;
+ }
+ }
 
 }
-}
-  
- });
-
-
- offers.addEventListener('mouseup', ()=>{
-  mouseIsmoving=false;
- 
- })
- awards.addEventListener('mouseup', ()=>{
-  mouseIsmovingAward=false;
- 
- })
-
-
-
- offers.addEventListener('touchstart', (event)=>{
-  mouseIsmoving=true;
-  xCoordinate=event.touches[0].clientX;
-  
- })
+ offers.addEventListener('touchstart', (event)=>{handleTouchstart(offersParam, event)})
 
  offers.addEventListener('touchmove', (e)=>{
-  let coordinate=e.touches[0].clientX;
- if(mouseIsmoving){
-    if(xCoordinate<coordinate){
-    handleLeftClick();
-    mouseIsmoving=false;
-  } else {
-handleRightClick();
-mouseIsmoving=false;
-}
-}})
+  handleTouchmove(offersParam, e, debouncedHandleSlideLeft, debouncedHandleSlideRight)
+})
 
+awards.addEventListener('touchstart', (event)=>{handleTouchstart(paramsObjectAward, event)})
+awards.addEventListener('touchmove', (e)=>{
+handleTouchmove(paramsObjectAward, e, debounceHandleSlideLeftAward, debounceHandleSlideRightAward)});
+products.addEventListener('touchstart', (event)=>{handleTouchstart(productsParamObject, event)})
 
-
-awards.addEventListener('touchstart', (event)=>{
-  mouseIsmovingAward=true;
-  xCoordinateforAward=event.touches[0].clientX;
-  
- })
-
- awards.addEventListener('touchmove', (e)=>{
-  let coordinate=e.touches[0].clientX;
- if(mouseIsmovingAward){
-    if(xCoordinateforAward<coordinate){
-    handleLeftClickAward();
-    mouseIsmovingAward=false;
-  } else {
-handleAwardsRightClick();
-mouseIsmovingAward=false;
-}
-}})
-
-
-let isAnimatingProducts=false;
-handleRightClickforProduct=()=>{
- 
-  if (products.getBoundingClientRect().right > main.getBoundingClientRect().right) {
-         currentProductSlideIndex++;
-         products.style.transform = `translateX(${(-currentProductSlideIndex) * (productItemWidth + 35)}px)`;
-         productsSliderThumb.style.transform=`translateX(${currentProductSlideIndex*productsSliderthumLocation}px)`
-       } 
-   
-       isAnimatingProducts = false;
-      mouseIsmovingForProduct=false
- }
-    const debouncedHandleSlideRight2 = debounce(handleRightClickforProduct, 300);
-    productSliderRightBtn.addEventListener('click', debouncedHandleSlideRight2);
-
-
-
-
-
-
-       handleLeftClickProduct=()=>{
-  
-        if(currentProductSlideIndex===0)  return
-                else  {
-                       products.style.transform=`translateX(${products.getBoundingClientRect().left+productItemWidth+35-productContainer.getBoundingClientRect().left}px`;
-                     currentProductSlideIndex--;
-                     productsSliderThumb.style.transform=`translateX(${currentProductSlideIndex*productsSliderthumLocation}px)`
-                      } 
-       mouseIsmovingForProduct=false
-              }
-
-       let xCoordinate=0;
-       let xCoordinateforProduct=0;
-       let mouseIsmovingForProduct=false;
-
-       const debouncedHandleSlideLeft = debounce(handleLeftClick, 300);
-       leftButton.addEventListener('click', debouncedHandleSlideLeft)
-
-     
-
-const debouncedHandleSlideLeft2=debounce(handleLeftClickProduct, 300);
-productSliderLeftBtn.addEventListener('click', debouncedHandleSlideLeft2)
-    
-
-    
-
-
-
-       products.addEventListener('mousedown', (event)=>{
-        mouseIsmovingForProduct=true;
-        xCoordinateforProduct=event.clientX;
-        productsSliderBtns.classList.add('visible')
-       })
-
-
-      
-
-
-
-    products.addEventListener('mouseover', (e)=>{
-      productsSliderBtns.style.display="flex"
-      let coordinate=e.clientX;
-      if(mouseIsmovingForProduct){
-        coordinate=e.clientX
-        if(xCoordinateforProduct<coordinate){
-        
-          xCoordinateforProduct=e.clientX
-          handleLeftClickProduct();
-
-      } else {
-   
-        xCoordinateforProduct=e.clientX;
-        handleRightClickforProduct();
-    
-  }
-  }
-      
-     });
-
-
-     
-
-       products.addEventListener('mouseup', (event)=>{
-        mouseIsmovingForProduct=false;
-       
-       })
-
-      
-
-       products.addEventListener('touchstart', (event)=>{
-        mouseIsmovingForProduct=true;
-        xCoordinateforProduct=event.touches[0].clientX;
-        
-       })
-
-       products.addEventListener('touchmove', (e)=>{
-        let coordinate=e.touches[0].clientX;
-       if(mouseIsmovingForProduct){
-          if(xCoordinateforProduct<coordinate){
-          handleLeftClickProduct();
-          mouseIsmovingForProduct=false;
-        } else {
-          handleRightClickforProduct();
-      mouseIsmovingForProduct=false;
-    }
-    }})
-
-
-      
-
-
+products.addEventListener('touchmove', (e)=>{
+handleTouchmove(productsParamObject, e, debouncedHandleSlideLeftProducts, debouncedHandleSlideRight2)})
