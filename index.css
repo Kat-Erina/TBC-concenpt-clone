@@ -570,7 +570,9 @@ margin-right: 5px;}
 
   .card, .offer-card, .product-card, .award-card{ background-position: center;
     background-size: cover;
-    transition: transform 0.3s ease-in-out; }
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden; }
+    
   .card-1{
  
     background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images/digital.png');
@@ -947,6 +949,14 @@ width: 300px;
     list-style: none;
     display: flex;
     flex-direction: column;
+    text-wrap: wrap;
+    /* width: 100%;
+    background-color: red;
+    overflow-wrap: break-word;
+    height: 100%; */
+    /* height: 100px;
+    background-color: #00008B; */
+
 }
 .product-card-title{
     font-size: 16px;
@@ -961,7 +971,9 @@ width: 300px;
     color: rgb(85, 95, 98);
     text-decoration: none;
     overflow: hidden;
-   
+    /* white-space: nowrap;      */
+    text-overflow: ellipsis;
+    /* height: 200px; */
 }
 .private-banker-container{
     background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('./images/banker.png');
@@ -1035,7 +1047,6 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .menu-item:hover{
     color: white;
-    background-color: #319bb5;
 }
 .item, .item a, .first-item {
     text-decoration: none !important;

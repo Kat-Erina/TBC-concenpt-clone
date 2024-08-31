@@ -12,7 +12,6 @@ const menuContainer=document.querySelector('.menu-container');
 let main=document.querySelector('.menu-container');
 let websiteTextContent;
 
-
 const offers=document.querySelector('.offers');
 const parentContainerOffer=document.querySelectorAll('.offer-card-parent')
 const offerContainer=document.querySelector('.offer-container');
@@ -25,7 +24,6 @@ const sliderBtns=document.querySelector('.slider-btns');
 let sliderthumLocation=(parentSlider.clientWidth-sliderThumb.clientWidth+10-sliderBtns.clientWidth)/(slidesAmount+1);
 const leftButton=document.querySelector('.left');
 const rightButton=document.querySelector('.right');
-
 
 const products=document.querySelector('.products');
 const parentContainerProduct=document.querySelectorAll('.product-card-parent');
@@ -40,9 +38,6 @@ let productsSliderthumLocation=(productsParentSlider.clientWidth-productsSliderT
 let productSliderLeftBtn=document.querySelector('.left-product-btn');
 let productSliderRightBtn=document.querySelector('.right-product-btn')
 
-
-
-
 const awards=document.querySelector('.awards');
 const parentContainerAwards=document.querySelectorAll('.awards-card-parent')
 const awardsContainer=document.querySelector('.awards-container');
@@ -55,9 +50,6 @@ const awardsSliderBtns=document.querySelector('.awards-slider-btns');
 let sliderthumLocationAward=(parentAwardsSlider.clientWidth-awardsSliderThumb.clientWidth+10-awardsSliderBtns.clientWidth)/(awardsSlidesAmount+1);
 const leftButtonAward=document.querySelector('.award-left-btn');
 const rightButtonAward=document.querySelector('.award-right-btn');
-
-let clicked=false;
-
 
 document.getElementById('menuButton').addEventListener('click', ()=> {
   let menuContent = document.getElementById('menuContent');
@@ -76,13 +68,11 @@ window.addEventListener('click', (event) =>{
 });
 
 
-
 let selectedLanguage=window.localStorage.getItem('language')|| "ka";
 if(selectedLanguage==='eng'){
   englishLanguageOption.textContent="ქარ";
   geoLanguage.textContent="ENG"
 } else{englishLanguageOption.textContent="ENG"}
-
 
 
 hamburgerMenu.addEventListener('click', ()=>{
@@ -104,8 +94,6 @@ englishLanguageOption.addEventListener('mouseenter',()=> {
 englishLanguageOption.addEventListener('mouseleave',()=> {
   englishLanguageOption.classList.remove('english-visible')
 })
-
-
 
 englishLanguageOption.addEventListener('click', ()=>{
  if(englishLanguageOption.textContent==="ENG"){
@@ -142,8 +130,6 @@ const allItems=document.querySelectorAll('[data-lang]');
 loadTranslations(selectedLanguage)
 
 
-
-
 dropBtn.forEach((el)=>{
   
 el.addEventListener('click', (e)=>{
@@ -156,34 +142,25 @@ el.addEventListener('click', (e)=>{
   }
   dropDownContentList.forEach((el)=>{
       if(el!=e.target.nextElementSibling){
-        removeVisibility(el)
-        
-        }
+        removeVisibility(el) }
     })
     e.target.nextElementSibling.classList.toggle('visible')
   })
 })
 
 function checkViewportWidth() {
-
-     additionalMenu.classList.add('invisible')
+ additionalMenu.classList.add('invisible')
     removeVisibility(additionalMenu);
-    
-  dropDownContentList.forEach((el)=>{
-      el.classList.remove('visible');
-      
-  })
+     dropDownContentList.forEach((el)=>{
+      el.classList.remove('visible');})
+
   if(window.innerWidth>=992){
     menuContainer.classList.remove('hidden'), 
     openMenuBar.classList.remove('open');
     hamburgerMenu.classList.remove('active')
-  }
-
-}
+  }}
 
 window.addEventListener('resize',()=> checkViewportWidth());
-
-
 
 function removeVisibility(param){
     param.classList.remove('visible')
@@ -191,7 +168,6 @@ function removeVisibility(param){
 }
 document.addEventListener('click', (e)=>{
   if(!e.target.classList.contains('dropbtn') && additionalMenu.classList.contains('visible')  ){
-    
     removeVisibility(additionalMenu)
     dropDownContentList.forEach((el)=>removeVisibility(el))
 
@@ -199,7 +175,6 @@ document.addEventListener('click', (e)=>{
 })
 
 const listItems = document.querySelectorAll('.menu-item');
-
 listItems.forEach(item => {
   item.addEventListener('click', () => {
     item.classList.toggle('active');
@@ -215,12 +190,10 @@ let currentAwardsSlideIndex=0
 let xCoordinate=0;
 let xCoordinateforAward=0;
 let xCoordinateforProduct=0;
-
-let rightCoordinate=offers.getBoundingClientRect().right;
-let rightProductCoordinate=products.getBoundingClientRect().right;
-
 let isAnimatingAward = false; 
 let mouseIsmovingAward=false;
+let isAnimatingProducts=false;
+let mouseIsmovingForProduct=false;
 
   function debounce(func, delay) {
     let timeout;
@@ -254,8 +227,6 @@ let offersParam={
   btns:awardsSliderBtns
 }
 
-let isAnimatingProducts=false;
-let mouseIsmovingForProduct=false;
 
 const productsParamObject={
 container:products,
@@ -293,26 +264,21 @@ function  leftClick(paramObject, container){
  paramObject.isAnimating=false
         }
 
-
-
 function handleRightClick(){rightClick(offersParam)}
 const debouncedHandleSlideRight = debounce(handleRightClick, 300);
 function handleLeftClick(){leftClick(offersParam, offerContainer)};
 const debouncedHandleSlideLeft = debounce(handleLeftClick, 300);
-
 
 function handleAwardsRightClick(){rightClick(paramsObjectAward);}
 const debounceHandleSlideRightAward=debounce(handleAwardsRightClick, 300);
 function handleLeftClickAward(){leftClick(paramsObjectAward, awardsContainer)}
 const debounceHandleSlideLeftAward=debounce(handleLeftClickAward, 300);
 
-
 leftButton.addEventListener('click', debouncedHandleSlideLeft)
 rightButton.addEventListener('click',debouncedHandleSlideRight );
 
 rightButtonAward.addEventListener('click', debounceHandleSlideRightAward)
 leftButtonAward.addEventListener('click', debounceHandleSlideLeftAward)
-
 
 function handleRightClickforProduct(){rightClick(productsParamObject)}
 const debouncedHandleSlideRight2 = debounce(handleRightClickforProduct, 300);
@@ -322,7 +288,6 @@ productSliderRightBtn.addEventListener('click', debouncedHandleSlideRight2);
 
 productSliderLeftBtn.addEventListener('click', debouncedHandleSlideLeftProducts);
 productSliderRightBtn.addEventListener('click', debouncedHandleSlideRight2);
-
 
 function handleMouseDown(paramObject, event){
   paramObject.xCoordinate=event.clientX,
@@ -341,8 +306,7 @@ function handleMouseOver(paramObj, event, leftFn, rightFn){
   if(paramObj.mouseIsmoving){
     coordinate=event.clientX
     if(paramObj.xCoordinate<coordinate){
-    
-      paramObj.xCoordinate=event.clientX
+     paramObj.xCoordinate=event.clientX
     leftFn();
 
   } else {
@@ -370,22 +334,20 @@ paramObj.xCoordinate=event.touches[0].clientX
 }
 
 function handleTouchmove(paramObject, event, leftFn, rightFn){
-  let {mouseIsmoving}=paramObject;
   let coordinate=event.touches[0].clientX;
   if(paramObject.mouseIsmoving){
-     if(paramObject.mouseIsmoving<coordinate){
+     if(paramObject.xCoordinate<coordinate){
     leftFn()
-     mouseIsmoving=false;
+    paramObject.mouseIsmoving=false;
    } else {
  rightFn();
- mouseIsmoving=false;
+ paramObject.mouseIsmoving=false;
  }
  }
 
 }
  offers.addEventListener('touchstart', (event)=>{handleTouchstart(offersParam, event)})
-
- offers.addEventListener('touchmove', (e)=>{
+offers.addEventListener('touchmove', (e)=>{
   handleTouchmove(offersParam, e, debouncedHandleSlideLeft, debouncedHandleSlideRight)
 })
 
